@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Payment</title>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<button id="payBtn">Pay ₹199</button>
+
+<script>
+document.getElementById("payBtn").onclick = function(e){
+  var options = {
+    "key": "YOUR_RAZORPAY_KEY_ID",
+    "amount": 19900, // ₹199 in paise
+    "currency": "INR",
+    "name": "RankArea",
+    "description": "Profile Optimization",
+    "handler": function(response){
+      alert("Payment Successful! Payment ID: " + response.razorpay_payment_id);
+      window.location.href = "results.html";
+    }
+  };
+  var rzp1 = new Razorpay(options);
+  rzp1.open();
+  e.preventDefault();
+}
+</script>
+</body>
+</html>
